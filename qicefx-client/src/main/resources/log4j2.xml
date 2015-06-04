@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN" >
+    <Properties>
+        <Property name="filename">C:/logs/qicqfx-client/log</Property>
+    </Properties>
+    <Appenders>
+        <!-- 控制台输出日志 -->
+        <Console name="STDOUT">
+            <PatternLayout pattern="%d %p [%c] - %m%n" />
+        </Console>
+        <!-- 文件输出日志 -->
+        <File name="File" fileName="${filename}" bufferedIO="true" immediateFlush="true">
+            <PatternLayout>
+                <pattern>%d %p [%c] - %m%n</pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <root level="error">
+            <AppenderRef ref="STDOUT" />
+            <AppenderRef ref="File" />
+        </root>
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File" />
+        </Root>
+    </Loggers>
+</Configuration>

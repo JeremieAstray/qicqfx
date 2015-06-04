@@ -1,0 +1,27 @@
+/*.main-window {
+ -fx-padding: 0;
+ -fx-background-color: #CAD2D7;
+ -fx-background-position: left top, left 19px top 15px ;
+ -fx-background-insets: 2,2,2,2;
+ -fx-border-color: #48BD31;
+ -fx-border-width: 3;
+}*/
+
+
+.button {
+    -fx-background-color: #09A3DC;
+    -fx-background-insets: 1,1,1,1;
+    -fx-border-color: #09A3DC;
+    -fx-border-width: 3;
+    -fx-border-radius: 5;
+    -fx-padding: 3;
+    -fx-text-fill: #FFFFFF;
+	-fx-font-family: "宋体";
+	-fx-font-size: 12;
+}
+
+.button:hover {
+    -fx-background-color: #83C3F5;
+    -fx-border-color: #83C3F5;
+    -fx-text-fill: #FFFFFF;
+}
