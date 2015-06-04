@@ -1,4 +1,4 @@
-package com.jeremie.qicqfx.server.socket;
+package com.jeremie.qicqfx.client.socket;
 
 
 import com.jeremie.qicqfx.dto.MessageDTO;
@@ -26,7 +26,7 @@ public class MyClient {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             final ObjectInputStream finalois = objectInputStream;
-            Thread thread = new Thread(() -> {
+           /* Thread thread = new Thread(() -> {
                 try {
                     while (true) {
                         MessageDTO messageDTO = (MessageDTO) finalois.readObject();
@@ -38,14 +38,14 @@ public class MyClient {
                     e.printStackTrace();
                 }
             });
-            thread.start();
+            thread.start();*/
             while (true) {
                 String message = brConsle.readLine();
                 if (name == null)
                     name = message;
                 MessageDTO messageDTO = new MessageDTO();
-                messageDTO.setMessage(message);
-                messageDTO.setSender(name);
+                /*messageDTO.setMessage(message);
+                messageDTO.setSender(name);*/
                 objectOutputStream.writeObject(messageDTO);
                 objectOutputStream.flush();
                 if ("END".equals(message)) {
@@ -57,7 +57,7 @@ public class MyClient {
                     break;
                 }
             }
-            thread.interrupt();
+           // thread.interrupt();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
