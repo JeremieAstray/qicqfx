@@ -8,18 +8,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Collectors;
+
 /**
  * Created by jeremie on 2015/6/5.
  */
 @Service("DisconnectService")
-public class DisconnectService implements BaseService<DisconnectDTO>  {
+public class DisconnectService implements BaseService<DisconnectDTO> {
     private static Logger logger = LogManager.getLogger(DisconnectService.class);
 
     @Override
     public boolean handleMessage(DisconnectDTO message, QicqSokcet qicqSokcet) {
         Constants.onlineUsers.remove(message.getUsername());
         OnlineUsersMessageDTO onlineUsersMessageDTO = new OnlineUsersMessageDTO();
-        onlineUsersMessageDTO.setOnlineUsers((String[]) Constants.onlineUsers.keySet().toArray());
+        onlineUsersMessageDTO.setOnlineUsers(Constants.onlineUsers.keySet().stream().collect(Collectors.toList()));
         for (QicqSokcet sokcet : Constants.onlineUsers.values())
             sokcet.sendData(onlineUsersMessageDTO);
         return true;

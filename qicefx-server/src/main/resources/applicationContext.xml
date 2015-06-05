@@ -2,91 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd
-       http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd"
+       http://www.springframework.org/schema/context/spring-context.xsd"
        default-lazy-init="true">
     <!-- service扫描 -->
     <context:component-scan base-package="com.jeremie.qicqfx.server.service" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
-    <!--&lt;!&ndash; dao扫描 &ndash;&gt;
-    <context:component-scan base-package="com.jeremie.qicqfx.server.dao" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-    </context:component-scan>
 
-    &lt;!&ndash; jdbc.properties &ndash;&gt;
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations" value="classpath:jdbc.properties"/>
-    </bean>
-
-    &lt;!&ndash; c3p0 数据库连接池 &ndash;&gt;
-    <bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="${jdbc.driverClass}"/>
-        <property name="jdbcUrl" value="${jdbc.url}"/>
-        <property name="user" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-        <property name="minPoolSize" value="${jdbc.minPoolSize}"/>
-        <property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
-        <property name="checkoutTimeout" value="${jdbc.checkoutTimeout}"/>
-        <property name="maxStatements" value="${jdbc.maxStatements}"/>
-        <property name="testConnectionOnCheckin" value="${jdbc.testConnectionOnCheckin}"/>
-        <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}"/>
-    </bean>
-
-    <bean id="dataSource"  class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
-        <property name="targetDataSource" ref="c3p0DataSource"/>
-    </bean>
-
-    &lt;!&ndash; spring和MyBatis完美整合，不需要mybatis的配置映射文件 &ndash;&gt;
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        &lt;!&ndash; 自动扫描mapping.xml文件 &ndash;&gt;
-        <property name="mapperLocations" value="classpath:mapping/*.xml"/>
-    </bean>
-
-    &lt;!&ndash; DAO接口所在包名，Spring会自动查找其下的类 &ndash;&gt;
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.jeremie.baseJavafx.dao" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-    </bean>
-
-    &lt;!&ndash; Transaction Support &ndash;&gt;
-    <tx:annotation-driven transaction-manager="transactionManager" />
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-    &lt;!&ndash; 拦截配置 &ndash;&gt;
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            &lt;!&ndash;说明事务类别 &ndash;&gt;
-            <tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
-            <tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
-            <tx:method name="add*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
-            <tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
-            <tx:method name="batch*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
-            <tx:method name="sendOpen*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
-            <tx:method name="sendClose*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
-            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="load*" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="*" read-only="true"/>
-        </tx:attributes>
-    </tx:advice>
-
-    &lt;!&ndash; 切入点 &ndash;&gt;
-    <aop:config expose-proxy="true" proxy-target-class="true">
-        &lt;!&ndash; service层事务 &ndash;&gt;
-        <aop:advisor id="serviceTx" advice-ref="txAdvice"
-                     pointcut="execution(public * com.jeremie.qicqfx.server.service.*.*(..))" order="1"/>
-    </aop:config>-->
 </beans>
