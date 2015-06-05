@@ -2,35 +2,26 @@ package com.jeremie.qicqfx.server.constants;
 
 
 import com.jeremie.qicqfx.dto.MessageDTO;
+import com.jeremie.qicqfx.server.service.BaseService;
 import com.jeremie.qicqfx.server.socket.QicqSokcet;
-import com.jeremie.qicqfx.util.CallBack;
-import com.jeremie.qicqfx.util.MsgQueue;
-import sun.plugin2.message.Message;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by jeremie on 2015/5/31.
  */
-public class DataHandler{
+public class DataHandler {
+    private static Logger logger = LogManager.getLogger(DataHandler.class);
 
-    private List<CallBack<MessageDTO>> callBackList;
-
-    public DataHandler() {
-        callBackList = new ArrayList<>();
+    public boolean handleMessage(Object o, QicqSokcet qicqSokcet) {
+        boolean flag = false;
+        if(o instanceof MessageDTO) {
+            MessageDTO messageDTO = (MessageDTO)o;
+            String beanName = messageDTO.getClass().getSimpleName().replace("DTO", "Service");
+            BaseService baseService = (BaseService) SpringContextHolder.applicationContext.getBean(beanName);
+            flag = baseService.handleMessage(messageDTO, qicqSokcet);
+        }
+        return flag;
     }
 
-    public boolean handleMessage(Object o,QicqSokcet qicqSokcet){
-
-        return true;
-    }
-
-    public void sendMessage(MessageDTO messageDTO){
-        //Constants.onlineUsers
-    }
-
-    public void addCallback(CallBack<MessageDTO> callBack){
-        callBackList.add(callBack);
-    }
 }
