@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Jeremie on 2015/5/14.
  */
-public class PrivateMessageDTO implements Serializable {
+public class PrivateMessageDTO extends MessageDTO{
     private String sender;
     private String receiver;
     private String message;

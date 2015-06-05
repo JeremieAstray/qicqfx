@@ -1,14 +1,13 @@
 package com.jeremie.qicqfx.dto;
 
-import java.io.Serializable;
-
 /**
  * Created by jeremie on 2015/6/4.
  */
-public class GroupMessageDTO implements Serializable{
+public class GroupMessageDTO extends MessageDTO {
     private String sender;
     private String message;
     private Long createTime;
+
 
     public String getSender() {
         return sender;

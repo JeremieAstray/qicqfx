@@ -3,7 +3,7 @@ package com.jeremie.qicqfx.util;
 import java.util.Vector;
 
 /**
- * ÏûÏ¢¶ÓÁĞ¡£<br>
+ * æ¶ˆæ¯é˜Ÿåˆ—ã€‚<br>
  * Created on 2014/2/28.
  * @author Jeremie.Astray
  *
@@ -13,7 +13,7 @@ public class MsgQueue<T extends Object> {
     private Vector<T> queue = null;
 
     /**
-     * ¹¤¾ßÀà£ºÏûÏ¢¶ÓÁĞ
+     * å·¥å…·ç±»ï¼šæ¶ˆæ¯é˜Ÿåˆ—
      */
     public MsgQueue(){
         queue  = new Vector<T>();

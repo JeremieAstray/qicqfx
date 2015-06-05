@@ -3,7 +3,7 @@ package com.jeremie.qicqfx.dto;
 /**
  * Created by jeremie on 2015/6/4.
  */
-public class ConnectDTO {
+public class ConnectDTO extends MessageDTO {
     private User user;
     private boolean connected;
     private boolean end;

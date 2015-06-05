@@ -1,18 +1,21 @@
 package com.jeremie.qicqfx.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by Jeremie on 2015/5/21.
  */
-public enum Status {
+public enum Status implements Serializable {
 
     CONNECTED(1,ConnectDTO.class),
-    DISCONNECTED(0,ConnectDTO.class),
-    END_SIGNAL(-1,ConnectDTO.class),
+    DISCONNECTED(0,DisconnectDTO.class),
+    END_SIGNAL(-1,DisconnectDTO.class),
     PRIVATE_MESSAGE(2,PrivateMessageDTO.class),
-    GROUP_MESSAGE(3,GroupMessageDTO.class);
+    GROUP_MESSAGE(3,GroupMessageDTO.class),
+    ONLINEUSERS_MESSAGE(4,OnlineUsersMessageDTO.class);
 
 
-    private Status(int statusNum,Class clazz) {
+    Status(int statusNum, Class clazz) {
         this.statusNum = statusNum;
         this.clazz = clazz;
     }
