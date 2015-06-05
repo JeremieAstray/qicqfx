@@ -12,8 +12,8 @@ public enum Status implements Serializable {
     END_SIGNAL(-1,DisconnectDTO.class),
     PRIVATE_MESSAGE(2,PrivateMessageDTO.class),
     GROUP_MESSAGE(3,GroupMessageDTO.class),
-    ONLINEUSERS_MESSAGE(4,OnlineUsersMessageDTO.class);
-
+    ONLINEUSERS_MESSAGE(4,OnlineUsersMessageDTO.class),
+    ERROR_MESSAGE(5,ErrorMessageDTO.class);
 
     Status(int statusNum, Class clazz) {
         this.statusNum = statusNum;

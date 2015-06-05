@@ -1,6 +1,6 @@
 package com.jeremie.qicqfx.dto;
 
-import java.io.Serializable;
+import java.nio.ByteBuffer;
 
 /**
  * Created by Jeremie on 2015/5/14.
@@ -10,6 +10,28 @@ public class PrivateMessageDTO extends MessageDTO{
     private String receiver;
     private String message;
     private Long createTime;
+    private boolean isImage;
+    private ByteBuffer image;
+
+    public PrivateMessageDTO(){
+        status = Status.PRIVATE_MESSAGE;
+    }
+
+    public boolean isImage() {
+        return isImage;
+    }
+
+    public void setIsImage(boolean isImage) {
+        this.isImage = isImage;
+    }
+
+    public ByteBuffer getImage() {
+        return image;
+    }
+
+    public void setImage(ByteBuffer image) {
+        this.image = image;
+    }
 
     public String getSender() {
         return sender;

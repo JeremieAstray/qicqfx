@@ -4,31 +4,17 @@ package com.jeremie.qicqfx.dto;
  * Created by jeremie on 2015/6/4.
  */
 public class ConnectDTO extends MessageDTO {
-    private User user;
-    private boolean connected;
-    private boolean end;
-
-    public User getUser() {
-        return user;
+    private String username;
+    public ConnectDTO() {
+        status = Status.CONNECTED;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public String getUsername() {
+        return username;
     }
 
-    public boolean isConnected() {
-        return connected;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setConnected(boolean connected) {
-        this.connected = connected;
-    }
-
-    public boolean isEnd() {
-        return end;
-    }
-
-    public void setEnd(boolean end) {
-        this.end = end;
-    }
 }

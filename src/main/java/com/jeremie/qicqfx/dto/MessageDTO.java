@@ -8,10 +8,6 @@ import java.io.Serializable;
 public class MessageDTO implements Serializable {
     protected Status status;
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     public Status getStatus() {
         return status;
     }
