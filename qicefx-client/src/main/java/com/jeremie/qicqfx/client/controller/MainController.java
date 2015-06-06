@@ -29,16 +29,16 @@ public class MainController implements Initializable {
     private Text username;
 
     private BackgroundImage userImage = new BackgroundImage(
-            new Image(this.getClass().getResourceAsStream("/icon/user.png"), 32, 32, true, true)
+            new Image(this.getClass().getResourceAsStream("/icon/user.png"), 48, 48, true, true)
             , BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
     private BackgroundImage userActiveImage = new BackgroundImage(
-            new Image(this.getClass().getResourceAsStream("/icon/userActive.png"), 32, 32, true, true)
+            new Image(this.getClass().getResourceAsStream("/icon/userActive.png"), 48, 48, true, true)
             , BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
     private BackgroundImage groupImage = new BackgroundImage(
-            new Image(this.getClass().getResourceAsStream("/icon/group.png"), 32, 32, true, true)
+            new Image(this.getClass().getResourceAsStream("/icon/group.png"), 48, 48, true, true)
             , BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
     private BackgroundImage groupActiveImage = new BackgroundImage(
-            new Image(this.getClass().getResourceAsStream("/icon/groupActive.png"), 32, 32, true, true)
+            new Image(this.getClass().getResourceAsStream("/icon/groupActive.png"), 48, 48, true, true)
             , BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
     private BackgroundImage backImage = new BackgroundImage(
             new Image(this.getClass().getResourceAsStream("/icon/back.png"), 32, 32, true, true)
@@ -47,6 +47,10 @@ public class MainController implements Initializable {
 
     @FXML
     private void close() {
+        DisconnectDTO disconnectDTO = new DisconnectDTO(true);
+        disconnectDTO.setUsername(Constants.username);
+        disconnectDTO.setReason("断开连接");
+        Constants.qicqClient.sendData(disconnectDTO);
         ScreenManager.screenManager.closeStage();
     }
 
@@ -60,6 +64,7 @@ public class MainController implements Initializable {
         DisconnectDTO disconnectDTO = new DisconnectDTO(true);
         disconnectDTO.setUsername(Constants.username);
         disconnectDTO.setReason("断开连接");
+        Constants.qicqClient.sendData(disconnectDTO);
         while(Constants.qicqThread.isAlive()) {
             try {
                 Thread.sleep(100);
@@ -67,6 +72,8 @@ public class MainController implements Initializable {
                 logger.error(e);
             }
         }
+        Constants.qicqClient = null;
+        Constants.qicqThread = null;
         ScreenManager.screenManager.loadLoginPane();
     }
 

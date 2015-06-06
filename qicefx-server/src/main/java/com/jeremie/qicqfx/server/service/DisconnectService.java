@@ -2,6 +2,7 @@ package com.jeremie.qicqfx.server.service;
 
 import com.jeremie.qicqfx.dto.DisconnectDTO;
 import com.jeremie.qicqfx.dto.OnlineUsersMessageDTO;
+import com.jeremie.qicqfx.dto.Status;
 import com.jeremie.qicqfx.server.constants.Constants;
 import com.jeremie.qicqfx.server.socket.QicqSokcet;
 import org.apache.logging.log4j.LogManager;
@@ -19,11 +20,13 @@ public class DisconnectService implements BaseService<DisconnectDTO> {
 
     @Override
     public boolean handleMessage(DisconnectDTO message, QicqSokcet qicqSokcet) {
-        Constants.onlineUsers.remove(message.getUsername());
-        OnlineUsersMessageDTO onlineUsersMessageDTO = new OnlineUsersMessageDTO();
-        onlineUsersMessageDTO.setOnlineUsers(Constants.onlineUsers.keySet().stream().collect(Collectors.toList()));
-        for (QicqSokcet sokcet : Constants.onlineUsers.values())
-            sokcet.sendData(onlineUsersMessageDTO);
+        if(message.getStatus().equals(Status.DISCONNECTED)) {
+            Constants.onlineUsers.remove(message.getUsername());
+            OnlineUsersMessageDTO onlineUsersMessageDTO = new OnlineUsersMessageDTO();
+            onlineUsersMessageDTO.setOnlineUsers(Constants.onlineUsers.keySet().stream().collect(Collectors.toList()));
+            for (QicqSokcet sokcet : Constants.onlineUsers.values())
+                sokcet.sendData(onlineUsersMessageDTO);
+        }
         return true;
     }
 }

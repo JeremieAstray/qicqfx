@@ -30,4 +30,6 @@ public enum Status implements Serializable {
     public Class getClazz() {
         return clazz;
     }
+
+
 }

@@ -8,6 +8,10 @@ public class ConnectDTO extends MessageDTO {
     public ConnectDTO() {
         status = Status.CONNECTED;
     }
+    public ConnectDTO(String username) {
+        status = Status.CONNECTED;
+        this.username = username;
+    }
 
     public String getUsername() {
         return username;

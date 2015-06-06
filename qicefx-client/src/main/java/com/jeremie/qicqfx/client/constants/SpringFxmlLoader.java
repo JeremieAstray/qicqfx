@@ -13,7 +13,7 @@ import java.net.URL;
  */
 public class SpringFxmlLoader {
 
-    private static final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+    public static final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 
     public Parent load(String url) {
         try {

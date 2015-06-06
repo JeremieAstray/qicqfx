@@ -35,6 +35,12 @@ public class LoginController implements Initializable {
 
     @FXML
     private void close() {
+        if (Constants.qicqClient != null && Constants.qicqThread != null && Constants.qicqThread.isAlive()) {
+            DisconnectDTO disconnectDTO = new DisconnectDTO(true);
+            disconnectDTO.setUsername(Constants.username);
+            disconnectDTO.setReason("断开连接");
+            Constants.qicqClient.sendData(disconnectDTO);
+        }
         ScreenManager.screenManager.closeStage();
     }
 
@@ -56,7 +62,6 @@ public class LoginController implements Initializable {
             }
             QicqClient qicqClient = Constants.qicqClient;
             qicqClient.sendData(new ConnectDTO(username.getText().trim()));
-            System.out.println("等待连接中...");
             login.setText("登 录 中！");
             login.setDisable(true);
         }
@@ -70,7 +75,7 @@ public class LoginController implements Initializable {
                 Constants.username = data.getUsername();
                 Platform.runLater(() -> {
                     ScreenManager.screenManager.loadMainPane();
-                    ((MainController)SpringFxmlLoader.applicationContext.getBean("MainController")).changUsername(data.getUsername());
+                    ((MainController) SpringFxmlLoader.applicationContext.getBean("MainController")).changUsername(data.getUsername());
                     login.setText("登 录");
                     login.setDisable(false);
                 });
@@ -80,16 +85,19 @@ public class LoginController implements Initializable {
             @Override
             public void call(ErrorMessageDTO data) {
                 System.out.println("连接错误：" + data.getErrorMessage());
-                DisconnectDTO disconnectDTO = new DisconnectDTO(true);
+                DisconnectDTO disconnectDTO = new DisconnectDTO(false);
                 disconnectDTO.setUsername(Constants.username);
                 disconnectDTO.setReason("断开连接");
-                while(Constants.qicqThread.isAlive()) {
+                Constants.qicqClient.sendData(disconnectDTO);
+                while (Constants.qicqThread.isAlive()) {
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
                         logger.error(e);
                     }
                 }
+                Constants.qicqClient = null;
+                Constants.qicqThread = null;
                 Platform.runLater(() -> {
                     login.setText("登 录");
                     login.setDisable(false);

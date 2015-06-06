@@ -72,6 +72,7 @@ public class QicqSokcet implements Runnable {
                 logger.error(e);
             }
             try {
+                dataHandler.close(this);
                 logger.debug(socket.getInetAddress() + " close!");
                 socket.close();
             } catch (IOException e) {

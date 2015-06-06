@@ -7,6 +7,8 @@ import com.jeremie.qicqfx.server.socket.QicqSokcet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Map;
+
 /**
  * Created by jeremie on 2015/5/31.
  */
@@ -24,4 +26,9 @@ public class DataHandler {
         return flag;
     }
 
+    public void close(QicqSokcet qicqSokcet){
+        for(Map.Entry<String,QicqSokcet> map:Constants.onlineUsers.entrySet())
+            if(map.getValue()==qicqSokcet)
+                Constants.onlineUsers.remove(map.getKey());
+    }
 }

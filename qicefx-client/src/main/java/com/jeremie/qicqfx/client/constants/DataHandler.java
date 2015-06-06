@@ -5,17 +5,19 @@ import com.jeremie.qicqfx.util.CallBack;
 import com.jeremie.qicqfx.dto.MessageDTO;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by jeremie on 2015/5/31.
  */
 public class DataHandler {
 
-    private List<CallBack> callBackList;
+    private Set<CallBack> callBackList;
 
     public DataHandler() {
-        callBackList = new ArrayList<>();
+        callBackList = new HashSet<>();
     }
 
     public boolean handleMessage(Object o) {
