@@ -14,7 +14,7 @@
         </ImageView>
         <Button styleClass="loginControl" layoutX="400.0" mnemonicParsing="false" onAction="#close" prefHeight="26.0" prefWidth="30.0" text="X" textAlignment="CENTER"/>
         <Button styleClass="loginControl" id="mini" layoutX="370.0" mnemonicParsing="false" onAction="#minimize" prefHeight="26.0" prefWidth="30.0" text="－" textAlignment="CENTER"/>
-        <TextField fx:id="userId" layoutX="174.0" layoutY="213.0" prefHeight="36.0" prefWidth="200.0" promptText="　　　　　　用 户 名"/>
+        <TextField fx:id="username" layoutX="174.0" layoutY="213.0" prefHeight="36.0" prefWidth="200.0" promptText="　　　　　　用 户 名"/>
         <Button styleClass="login" fx:id="login" layoutX="174.0" layoutY="260.0" mnemonicParsing="false" onAction="#login" prefHeight="36.0" prefWidth="200.0" text="登  录" />
         <ImageView style="-fx-border-radius: 5;" fitHeight="83.0" fitWidth="83.0" layoutX="68.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
             <image>
