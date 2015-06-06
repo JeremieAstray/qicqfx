@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         logger.info("programme start");
-        //¿ªÆôqicq·şÎñ
+        //å¯åŠ¨qicqæœåŠ¡å™¨
         QicqServer qicqServer = new QicqServer();
         qicqServer.start();
     }

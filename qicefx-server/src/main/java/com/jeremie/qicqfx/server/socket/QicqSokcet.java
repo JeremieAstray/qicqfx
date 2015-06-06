@@ -44,8 +44,12 @@ public class QicqSokcet implements Runnable {
                 if (dataHandler.handleMessage(o, this))
                     break;
             }
+            objectOutputStream.writeObject(null);
+            Thread.sleep(200);
         } catch (IOException | ClassNotFoundException e) {
             logger.error(e);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             if (objectOutputStream != null) {
                 try {
@@ -68,7 +72,7 @@ public class QicqSokcet implements Runnable {
                 logger.error(e);
             }
             try {
-                System.out.println(socket.getInetAddress() + " close!");
+                logger.debug(socket.getInetAddress() + " close!");
                 socket.close();
             } catch (IOException e) {
                 logger.error(e);
