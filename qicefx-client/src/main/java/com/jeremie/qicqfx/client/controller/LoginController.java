@@ -2,8 +2,11 @@ package com.jeremie.qicqfx.client.controller;
 
 import com.jeremie.qicqfx.client.constants.SpringFxmlLoader;
 import com.jeremie.qicqfx.client.gui.ScreenManager;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -14,7 +17,6 @@ import java.util.ResourceBundle;
  */
 @Controller
 public class LoginController implements Initializable {
-
 
     @FXML
     private void close(){
@@ -29,7 +31,6 @@ public class LoginController implements Initializable {
     private void login(){
         ScreenManager.screenManager.loadMainPane();
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

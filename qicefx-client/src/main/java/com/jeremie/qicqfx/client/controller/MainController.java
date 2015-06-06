@@ -1,5 +1,6 @@
 package com.jeremie.qicqfx.client.controller;
 
+import com.jeremie.qicqfx.client.gui.ScreenManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -44,6 +45,16 @@ public class MainController implements Initializable {
             , BackgroundPosition.CENTER
             , BackgroundSize.DEFAULT);
 
+
+    @FXML
+    private void close(){
+        ScreenManager.screenManager.closeStage();
+    }
+    @FXML
+    private void minimize(){
+        ScreenManager.screenManager.minimize();
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         groupBtn.setBackground(new Background(groupImage));

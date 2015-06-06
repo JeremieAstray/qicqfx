@@ -1,45 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<Pane maxHeight="330.0" maxWidth="430.0" minHeight="330.0" minWidth="430.0" prefHeight="330.0" prefWidth="430.0"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.jeremie.qicqfx.client.controller.LoginController">
+<Pane maxHeight="330.0" maxWidth="430.0" minHeight="330.0" minWidth="430.0" prefHeight="330.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jeremie.qicqfx.client.controller.LoginController">
     <children>
         <ImageView fx:id="background" fitHeight="182.0" fitWidth="430.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../pic/qqlogo.png"/>
+                <Image url="@../pic/qqlogo.png" />
             </image>
         </ImageView>
-        <!--<Button onAction="#close" layoutX="400.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="X"
-                textAlignment="CENTER">
-            <font>
-                <Font name="Arial Black" size="12.0"/>
-            </font>
-        </Button>
-        <Button onAction="#minimize" layoutX="370.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="—"
-                textAlignment="CENTER">
-            <font>
-                <Font name="Arial Black" size="12.0"/>
-            </font>
-        </Button>-->
-        <TextField fx:id="userId" layoutX="120.0" layoutY="195.0" prefHeight="30.0" prefWidth="200.0" promptText="账号"/>
-        <PasswordField fx:id="password" layoutX="120.0" layoutY="225.0" prefHeight="30.0" prefWidth="200.0"
-                       promptText="密码"/>
-        <Button fx:id="login" layoutX="120.0" layoutY="283.0" mnemonicParsing="false" onAction="#login"
-                prefHeight="30.0" prefWidth="200.0" text="登  录"/>
-        <CheckBox fx:id="remember" layoutX="120.0" layoutY="261.0" mnemonicParsing="false" text="记住密码"
-                  textFill="#8d8d8d"/>
-        <CheckBox fx:id="autoLogin" layoutX="245.0" layoutY="261.0" mnemonicParsing="false" text="自动登录"
-                  textFill="#8d8d8d"/>
-        <Button fx:id="register" layoutX="330.0" layoutY="195.0" mnemonicParsing="false" prefHeight="30.0"
-                prefWidth="80.0" text="注册账号"/>
-        <ImageView fitHeight="83.0" fitWidth="83.0" layoutX="25.0" layoutY="195.0" pickOnBounds="true"
-                   preserveRatio="true">
+        <Button styleClass="loginControl" layoutX="400.0" mnemonicParsing="false" onAction="#close" prefHeight="26.0" prefWidth="30.0" text="X" textAlignment="CENTER"/>
+        <Button styleClass="loginControl" id="mini" layoutX="370.0" mnemonicParsing="false" onAction="#minimize" prefHeight="26.0" prefWidth="30.0" text="－" textAlignment="CENTER"/>
+        <TextField fx:id="userId" layoutX="174.0" layoutY="213.0" prefHeight="36.0" prefWidth="200.0" promptText="　　　　　　用 户 名"/>
+        <Button styleClass="login" fx:id="login" layoutX="174.0" layoutY="260.0" mnemonicParsing="false" onAction="#login" prefHeight="36.0" prefWidth="200.0" text="登  录" />
+        <ImageView style="-fx-border-radius: 5;" fitHeight="83.0" fitWidth="83.0" layoutX="68.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../pic/piclogo.jpg"/>
+                <Image url="@../pic/piclogo.jpg" />
             </image>
         </ImageView>
     </children>

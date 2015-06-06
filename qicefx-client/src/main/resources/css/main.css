@@ -1,0 +1,25 @@
+.loginControl {
+    -fx-text-fill: #000000;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 12;
+}
+.loginControl:hover{
+    -fx-background-color: rgb(212,64,39);
+    -fx-text-fill: #ffffff;
+
+}
+.loginControl:pressed{
+    -fx-background-color: rgb(166,42,21);
+    -fx-text-fill: #ffffff;
+}
+
+#mini:hover{
+    -fx-background-color: rgba(58, 149, 222, 1);
+    -fx-text-fill: #ffffff;
+}
+#mini:pressed{
+    -fx-background-color: rgba(38, 124, 194, 1);
+    -fx-text-fill: #ffffff;
+}

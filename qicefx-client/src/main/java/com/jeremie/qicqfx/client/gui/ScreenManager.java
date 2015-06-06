@@ -33,6 +33,7 @@ public class ScreenManager implements Observer {
     private double initX;
     private double initY;
     private String loginCss = ScreenManager.class.getResource("/css/login.css").toExternalForm();
+    private String mainCss = ScreenManager.class.getResource("/css/main.css").toExternalForm();
 
     public void setPrimaryStage(Stage primaryStage) {
         this.stage = primaryStage;
@@ -42,7 +43,7 @@ public class ScreenManager implements Observer {
         stage.setTitle("qicqfx");
         loadLoginPane();
         stage.setScene(scene);
-        stage.initStyle(StageStyle.DECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
 
@@ -64,10 +65,10 @@ public class ScreenManager implements Observer {
         }
         loginPane.setVisible(true);
         if (scene == null)
-            scene = new Scene(loginPane, 435, 360);
+            scene = new Scene(loginPane, 430, 330);
         scene.setRoot(loginPane);
-        stage.setHeight(360);
-        stage.setWidth(435);
+        stage.setHeight(330);
+        stage.setWidth(430);
         stage.setResizable(false);
         scene.getStylesheets().clear();
         scene.getStylesheets().add(loginCss);
@@ -96,7 +97,7 @@ public class ScreenManager implements Observer {
         stage.setMinWidth(800);
         stage.setResizable(true);
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(loginCss);
+        scene.getStylesheets().add(mainCss);
     }
 
     public void minimize() {

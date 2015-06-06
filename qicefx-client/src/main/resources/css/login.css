@@ -7,8 +7,30 @@
  -fx-border-width: 3;
 }*/
 
+.loginControl {
+    -fx-text-fill: #CCCCCC;
+    -fx-border-radius: 0;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 12;
+}
+.loginControl:hover{
+    -fx-background-color: rgb(212,64,39);
 
-.button {
+}
+.loginControl:pressed{
+    -fx-background-color: rgb(166,42,21);
+}
+
+#mini:hover{
+    -fx-background-color: rgba(38, 173, 221, 0.29);
+}
+#mini:pressed{
+    -fx-background-color: rgba(38, 173, 221, 0.39);
+}
+
+.login {
     -fx-background-color: #09A3DC;
     -fx-background-insets: 1,1,1,1;
     -fx-border-color: #09A3DC;
@@ -20,7 +42,7 @@
 	-fx-font-size: 12;
 }
 
-.button:hover {
+.login:hover {
     -fx-background-color: #83C3F5;
     -fx-border-color: #83C3F5;
     -fx-text-fill: #FFFFFF;
