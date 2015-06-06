@@ -23,3 +23,19 @@
     -fx-background-color: rgba(38, 124, 194, 1);
     -fx-text-fill: #ffffff;
 }
+
+.vbox Label{
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-pref-width: 178.0;
+    -fx-pref-height: 37.0;
+    -fx-font-size: 20;
+}
+
+/*
+.vbox Label:focused{
+    -fx-background-color: #D5D5D5;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}*/

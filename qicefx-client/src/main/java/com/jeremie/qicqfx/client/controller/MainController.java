@@ -3,16 +3,27 @@ package com.jeremie.qicqfx.client.controller;
 import com.jeremie.qicqfx.client.constants.Constants;
 import com.jeremie.qicqfx.client.gui.ScreenManager;
 import com.jeremie.qicqfx.dto.DisconnectDTO;
+import com.jeremie.qicqfx.dto.MessageDTO;
+import com.jeremie.qicqfx.dto.OnlineUsersMessageDTO;
+import com.jeremie.qicqfx.util.CallBack;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 
+import javax.xml.soap.Node;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,7 +37,13 @@ public class MainController implements Initializable {
     @FXML
     private Label groupBtn, userBtn, backBtn;
     @FXML
+    private TextField searchBox;
+    @FXML
     private Text username;
+    @FXML
+    private VBox onlineUser;
+
+    private String privateUser;
 
     private BackgroundImage userImage = new BackgroundImage(
             new Image(this.getClass().getResourceAsStream("/icon/user.png"), 48, 48, true, true)
@@ -94,6 +111,28 @@ public class MainController implements Initializable {
             userBtn.setBackground(new Background(userActiveImage));
             groupBtn.setBackground(new Background(groupImage));
         });
-
+        Constants.dataHandler.addCallback(new CallBack<OnlineUsersMessageDTO>() {
+            @Override
+            public void call(OnlineUsersMessageDTO data) {
+                Platform.runLater(() -> {
+                    onlineUser.getChildren().clear();
+                    for(String user:data.getOnlineUsers()) {
+                        if (user.equals(Constants.username))
+                            continue;
+                        Label label = new Label(user);
+                        label.setOnMouseReleased(event -> {
+                            for(javafx.scene.Node node:onlineUser.getChildren()){
+                                node.setStyle("-fx-background-color: transparent;");
+                            }
+                            label.setStyle("-fx-background-color: #D5D5D5;");
+                            privateUser = label.getText();
+                        });
+                        if(user.equals(privateUser))
+                            label.setStyle("-fx-background-color: #D5D5D5;");
+                        onlineUser.getChildren().add(label);
+                    }
+                });
+            }
+        });
     }
 }
