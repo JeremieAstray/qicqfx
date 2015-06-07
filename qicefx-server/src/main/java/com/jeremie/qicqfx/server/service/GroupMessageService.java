@@ -23,10 +23,11 @@ public class GroupMessageService implements BaseService<GroupMessageDTO> {
                 ||(!message.isImage() && StringUtils.isEmpty(message.getMessage()))
                 ||(!Constants.onlineUsers.containsKey(message.getSender())))
             qicqSokcet.sendData(new ErrorMessageDTO("群发消息错误"));
-        else
+        else {
+            message.setCreateTime(System.currentTimeMillis());
             Constants.onlineUsers.values().stream()
-                    .filter(reQicqSokcet -> reQicqSokcet != qicqSokcet)
                     .forEach(reQicqSokcet -> reQicqSokcet.sendData(message));
+        }
         return false;
     }
 }

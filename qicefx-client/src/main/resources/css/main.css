@@ -24,7 +24,7 @@
     -fx-text-fill: #ffffff;
 }
 
-.vbox Label{
+.onlineUserVbox Label{
     -fx-background-color: transparent;
     -fx-alignment: center;
     -fx-text-alignment: center;
@@ -33,9 +33,6 @@
     -fx-font-size: 20;
 }
 
-/*
-.vbox Label:focused{
-    -fx-background-color: #D5D5D5;
-    -fx-alignment: center;
-    -fx-text-alignment: center;
-}*/
+.chatVbox Label{
+    -fx-pref-width: 562.0;
+}

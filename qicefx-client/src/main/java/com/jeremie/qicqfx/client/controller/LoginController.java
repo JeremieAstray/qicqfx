@@ -64,6 +64,8 @@ public class LoginController implements Initializable {
             qicqClient.sendData(new ConnectDTO(username.getText().trim()));
             login.setText("登 录 中！");
             login.setDisable(true);
+        }else{
+            System.out.println("账号为空");
         }
     }
 

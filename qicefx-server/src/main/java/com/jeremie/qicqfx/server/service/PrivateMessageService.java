@@ -23,8 +23,10 @@ public class PrivateMessageService  implements BaseService<PrivateMessageDTO> {
                 ||(!Constants.onlineUsers.containsKey(message.getSender()))
                 ||(!Constants.onlineUsers.containsKey(message.getReceiver())))
             qicqSokcet.sendData(new ErrorMessageDTO("私信消息错误"));
-        else
+        else {
+            message.setCreateTime(System.currentTimeMillis());
             Constants.onlineUsers.get(message.getReceiver()).sendData(message);
+        }
         return false;
     }
 }

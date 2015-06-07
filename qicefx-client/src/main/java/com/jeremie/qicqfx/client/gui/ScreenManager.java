@@ -1,10 +1,14 @@
 package com.jeremie.qicqfx.client.gui;
 
+import com.jeremie.qicqfx.client.constants.Constants;
 import com.jeremie.qicqfx.client.constants.SpringFxmlLoader;
+import com.jeremie.qicqfx.dto.DisconnectDTO;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
@@ -73,6 +77,15 @@ public class ScreenManager implements Observer {
 
         scene = new Scene(loginPane, 430, 330);
         stage.setResizable(false);
+        stage.setOnCloseRequest(event -> {
+            if (Constants.qicqClient != null && Constants.qicqThread != null && Constants.qicqThread.isAlive()) {
+                DisconnectDTO disconnectDTO = new DisconnectDTO(true);
+                disconnectDTO.setUsername(Constants.username);
+                disconnectDTO.setReason("断开连接");
+                Constants.qicqClient.sendData(disconnectDTO);
+            }
+            closeStage();
+        });
     }
 
     public void loadLoginPane() {

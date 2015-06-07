@@ -14,7 +14,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
         logger.info("Starting application");
         Platform.setImplicitExit(true);
         ScreenManager screens = new ScreenManager();
