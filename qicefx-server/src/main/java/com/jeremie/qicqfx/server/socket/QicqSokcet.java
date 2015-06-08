@@ -65,9 +65,7 @@ public class QicqSokcet implements Runnable {
             }
             objectOutputStream.writeObject(null);
             Thread.sleep(200);
-        } catch (IOException | ClassNotFoundException e) {
-            logger.error(e);
-        } catch (InterruptedException e) {
+        } catch (IOException | ClassNotFoundException | InterruptedException e) {
             logger.error(e);
         } finally {
             if (objectOutputStream != null) {
