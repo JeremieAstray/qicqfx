@@ -10,7 +10,7 @@ public class GroupMessageDTO extends MessageDTO {
     private String message;
     private Long createTime;
     private boolean isImage;
-    private ByteBuffer image;
+    private byte[] image;
 
     public GroupMessageDTO() {
         status = Status.GROUP_MESSAGE;
@@ -24,11 +24,11 @@ public class GroupMessageDTO extends MessageDTO {
         this.isImage = isImage;
     }
 
-    public ByteBuffer getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(ByteBuffer image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

@@ -56,16 +56,16 @@
                                     maxWidth="1.7976931348623157E308" prefHeight="330.0" prefWidth="562.0">
                             <VBox fx:id="chatBox" styleClass="chatVbox" maxHeight="1.7976931348623157E308"
                                   maxWidth="1.7976931348623157E308"
-                                  prefWidth="550.0"/>
+                                  prefWidth="550.0" />
                         </ScrollPane>
                         <TextArea fx:id="messageArea" layoutY="330.0" prefHeight="120.0" prefWidth="562.0"/>
                         <Pane layoutY="450.0" prefHeight="35.0" prefWidth="562.0">
                             <children>
                                 <Button onAction="#sendMsg" layoutX="452.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0"
                                         prefWidth="90.0" text="发送消息"/>
-                                <Label layoutX="12.0" layoutY="3.0" prefHeight="30.0" prefWidth="264.0"
-                                       text="还可以输入200字，按Ctril+Enter键发送消息"/>
-                                <Button layoutX="354.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0"
+                                <!--<Label layoutX="12.0" layoutY="3.0" prefHeight="30.0" prefWidth="264.0"
+                                       text="还可以输入200字，按Ctril+Enter键发送消息"/>-->
+                                <Button onAction="#sendPic" layoutX="354.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0"
                                         prefWidth="90.0" text="发送图片"/>
                             </children>
                         </Pane>
@@ -73,7 +73,7 @@
                 </Pane>
                 <Pane style="-fx-border-color: #C8C8C8;">
                     <children>
-                        <TextField fx:id="searchBox" layoutX="11.0" layoutY="20.0" promptText="搜索栏">
+                        <TextField visible="false" fx:id="searchBox" layoutX="11.0" layoutY="20.0" promptText="搜索栏">
                             <GridPane.margin>
                                 <Insets left="20.0" right="20.0"/>
                             </GridPane.margin>

@@ -11,7 +11,7 @@ public class PrivateMessageDTO extends MessageDTO{
     private String message;
     private Long createTime;
     private boolean isImage;
-    private ByteBuffer image;
+    private byte[] image;
 
     public PrivateMessageDTO(){
         status = Status.PRIVATE_MESSAGE;
@@ -25,11 +25,11 @@ public class PrivateMessageDTO extends MessageDTO{
         this.isImage = isImage;
     }
 
-    public ByteBuffer getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(ByteBuffer image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
