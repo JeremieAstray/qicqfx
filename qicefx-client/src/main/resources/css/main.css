@@ -33,6 +33,23 @@
     -fx-font-size: 20;
 }
 
-.chatVbox Label{
+/*.chatVbox Label{
     -fx-pref-width: 562.0;
+}*/
+
+.chatVbox #info{
+    -fx-text-fill: blue;
+    -fx-padding: 5 0 0 5;
+}
+.chatVbox #hostinfo{
+    -fx-text-fill: green;
+    -fx-padding: 5 0 0 5;
+}
+
+.chatVbox #hostmessage{
+    -fx-padding: 0 0 0 20;
+}
+
+.chatVbox #message{
+    -fx-padding:0 0 0 20;
 }

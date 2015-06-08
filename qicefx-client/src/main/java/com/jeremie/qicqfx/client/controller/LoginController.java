@@ -9,10 +9,13 @@ import com.jeremie.qicqfx.dto.DisconnectDTO;
 import com.jeremie.qicqfx.dto.ErrorMessageDTO;
 import com.jeremie.qicqfx.util.CallBack;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -69,11 +72,21 @@ public class LoginController implements Initializable {
         }
     }
 
+    private boolean enterLock = true;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        username.setOnKeyReleased(event -> {
+            if(event.getCode().equals(KeyCode.ENTER))
+                if(enterLock) {
+                    enterLock = false;
+                    login();
+                }
+        });
         Constants.dataHandler.addCallback(new CallBack<ConnectDTO>() {
             @Override
             public void call(ConnectDTO data) {
+                enterLock = true;
                 Constants.username = data.getUsername();
                 Platform.runLater(() -> {
                     ScreenManager.screenManager.loadMainPane();
@@ -86,6 +99,7 @@ public class LoginController implements Initializable {
         Constants.dataHandler.addCallback(new CallBack<ErrorMessageDTO>() {
             @Override
             public void call(ErrorMessageDTO data) {
+                enterLock = true;
                 System.out.println("连接错误：" + data.getErrorMessage());
                 DisconnectDTO disconnectDTO = new DisconnectDTO(false);
                 disconnectDTO.setUsername(Constants.username);

@@ -17,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -130,7 +131,7 @@ public class MainController implements Initializable {
                 new FileChooser.ExtensionFilter("gif图片 (*.*.gif)", "*.gif"),
                 new FileChooser.ExtensionFilter("jpeg图片 (*.*.jpeg)", "*.jpeg"));
         File file = fileChooser.showOpenDialog(null);
-        if(file!=null) {
+        if (file != null) {
             ByteBuffer byteBuffer = null;
             FileInputStream fs = null;
             FileChannel channel = null;
@@ -255,24 +256,37 @@ public class MainController implements Initializable {
                 if (groupMessage.isImage()) {
                     Image image = new Image(new ByteArrayInputStream(groupMessage.getImage()));
                     int zoom = 1;
-                    if(image.getWidth()>562 || image.getHeight()>330){
-                        int wzoom = ((Double) Math.ceil(image.getWidth() / 562)).intValue();
-                        int hzoom = ((Double) Math.ceil(image.getHeight() / 330)).intValue();
-                        zoom = Math.max(wzoom,hzoom);
+                    if (image.getWidth() > 542 || image.getHeight() > 325) {
+                        int wzoom = ((Double) Math.ceil(image.getWidth() / 542)).intValue();
+                        int hzoom = ((Double) Math.ceil(image.getHeight() / 325)).intValue();
+                        zoom = Math.max(wzoom, hzoom);
                     }
                     ImageView imageView = new ImageView(image);
-                    imageView.setFitWidth(image.getWidth()/zoom);
-                    imageView.setFitHeight(image.getHeight()/zoom);
+                    imageView.setTranslateX(20);
+                    imageView.setTranslateY(5);
+                    imageView.setFitWidth(image.getWidth() / zoom);
+                    imageView.setFitHeight(image.getHeight() / zoom);
                     Label info = new Label();
+                    if(groupMessage.getSender().equals(Constants.username))
+                        info.setId("hostinfo");
+                    else info.setId("info");
                     info.setText(groupMessage.getSender() + "   " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                             .format(new Date(groupMessage.getCreateTime()))));
                     chatBox.getChildren().add(info);
                     chatBox.getChildren().add(imageView);
                 } else {
                     Label info = new Label();
+                    if(groupMessage.getSender().equals(Constants.username))
+                        info.setId("hostinfo");
+                    else
+                        info.setId("info");
                     info.setText(groupMessage.getSender() + "   " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                             .format(new Date(groupMessage.getCreateTime()))));
                     Label message = new Label();
+                    if(groupMessage.getSender().equals(Constants.username))
+                        message.setId("hostmessage");
+                    else
+                        message.setId("message");
                     double hight = 20.0 + groupMessage.getMessage().split("\n").length * 15.0;
                     message.setPrefHeight(hight);
                     message.setText(groupMessage.getMessage());
@@ -286,24 +300,37 @@ public class MainController implements Initializable {
                 if (privateMessage.isImage()) {
                     Image image = new Image(new ByteArrayInputStream(privateMessage.getImage()));
                     int zoom = 1;
-                    if(image.getWidth()>562 || image.getHeight()>330){
-                        int wzoom = ((Double) Math.ceil(image.getWidth() / 562)).intValue();
-                        int hzoom = ((Double) Math.ceil(image.getHeight() / 330)).intValue();
-                        zoom = Math.max(wzoom,hzoom);
+                    if (image.getWidth() > 542 || image.getHeight() > 325) {
+                        int wzoom = ((Double) Math.ceil(image.getWidth() / 542)).intValue();
+                        int hzoom = ((Double) Math.ceil(image.getHeight() / 325)).intValue();
+                        zoom = Math.max(wzoom, hzoom);
                     }
                     ImageView imageView = new ImageView(image);
-                    imageView.setFitWidth(image.getWidth()/zoom);
-                    imageView.setFitHeight(image.getHeight()/zoom);
+                    imageView.setTranslateX(20);
+                    imageView.setTranslateY(5);
+                    imageView.setFitWidth(image.getWidth() / zoom);
+                    imageView.setFitHeight(image.getHeight() / zoom);
                     Label info = new Label();
+                    if(privateMessage.getSender().equals(Constants.username))
+                        info.setId("hostinfo");
+                    else info.setId("info");
                     info.setText(privateMessage.getSender() + "   " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                             .format(new Date(privateMessage.getCreateTime()))));
                     chatBox.getChildren().add(info);
                     chatBox.getChildren().add(imageView);
                 } else {
                     Label info = new Label();
+                    if(privateMessage.getSender().equals(Constants.username))
+                        info.setId("hostinfo");
+                    else
+                        info.setId("info");
                     info.setText(privateMessage.getSender() + "   " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                             .format(new Date(privateMessage.getCreateTime()))));
                     Label message = new Label();
+                    if(privateMessage.getSender().equals(Constants.username))
+                        message.setId("hostmessage");
+                    else
+                        message.setId("message");
                     double hight = 20.0 + privateMessage.getMessage().split("\n").length * 15.0;
                     message.setPrefHeight(hight);
                     message.setText(privateMessage.getMessage());
@@ -321,6 +348,11 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        messageArea.setOnKeyReleased(event -> {
+            if (event.getCode().equals(KeyCode.ENTER))
+                if (event.isControlDown())
+                    sendMsg();
+        });
         groupBtn.setBackground(new Background(groupActiveImage));
         userBtn.setBackground(new Background(userImage));
         backBtn.setBackground(new Background(backImage));
