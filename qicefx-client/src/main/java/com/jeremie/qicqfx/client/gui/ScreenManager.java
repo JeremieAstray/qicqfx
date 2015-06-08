@@ -92,8 +92,15 @@ public class ScreenManager implements Observer {
         closeAllPane();
         loginPane.setVisible(true);
         scene.setRoot(loginPane);
+        if(System.getProperty("os.name").startsWith("Mac OS")){
+            stage.setWidth(428);
+            stage.setMinWidth(428);
+        }else{
+            stage.setWidth(430);
+            stage.setMinWidth(430);
+        }
+        stage.setMinHeight(330);
         stage.setHeight(330);
-        stage.setWidth(430);
         scene.getStylesheets().clear();
         scene.getStylesheets().add(loginCss);
     }

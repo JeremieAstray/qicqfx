@@ -1,6 +1,7 @@
 package com.jeremie.qicqfx.client.socket;
 
 
+import com.jeremie.qicqfx.client.constants.Config;
 import com.jeremie.qicqfx.client.constants.DataHandler;
 import com.jeremie.qicqfx.util.EndSignal;
 import org.apache.logging.log4j.LogManager;
@@ -32,7 +33,7 @@ public class QicqClient implements Runnable {
     @Override
     public void run() {
         try {
-            socket = new Socket("127.0.0.1", 8000);
+            socket = new Socket(Config.serverIp, 8000);
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             Thread sendingThread = new Thread(() -> {
