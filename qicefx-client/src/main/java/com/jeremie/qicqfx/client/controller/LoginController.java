@@ -61,7 +61,7 @@ public class LoginController implements Initializable {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e);
             }
             QicqClient qicqClient = Constants.qicqClient;
             qicqClient.sendData(new ConnectDTO(username.getText().trim()));

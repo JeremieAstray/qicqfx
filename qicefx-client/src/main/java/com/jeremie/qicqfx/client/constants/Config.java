@@ -23,7 +23,7 @@ public class Config {
             try {
                 prop.load(Config.class.getResourceAsStream("/config/config.properties"));
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e);
             }
             if (!prop.isEmpty())
                 properties = prop;
