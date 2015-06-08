@@ -2,6 +2,7 @@ package com.jeremie.qicqfx.client.socket;
 
 
 import com.jeremie.qicqfx.client.constants.DataHandler;
+import com.jeremie.qicqfx.util.EndSignal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * Created by Jeremie on 2015/5/13.
@@ -24,6 +27,7 @@ public class QicqClient implements Runnable {
     public QicqClient(DataHandler dataHandler) {
         this.dataHandler = dataHandler;
     }
+    private BlockingQueue<Object> sendingQueue = new ArrayBlockingQueue(50);
 
     @Override
     public void run() {
@@ -31,15 +35,30 @@ public class QicqClient implements Runnable {
             socket = new Socket("127.0.0.1", 8000);
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            Thread sendingThread = new Thread(() -> {
+                while(true){
+                    try {
+                        Object o = sendingQueue.take();
+                        if(o instanceof EndSignal)
+                            break;
+                        objectOutputStream.writeObject(o);
+                    } catch (InterruptedException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            sendingThread.start();
             while (true) {
                 Object o = objectInputStream.readObject();
-                if(o == null)
+                if(o == null) {
+                    sendingQueue.put(new EndSignal());
                     break;
+                }
                 dataHandler.handleMessage(o);
             }
         } catch (EOFException e) {
             logger.debug("socket连接结束");
-        } catch(IOException | ClassNotFoundException e) {
+        } catch(IOException | ClassNotFoundException | InterruptedException e) {
             logger.error(e);
         } finally {
             if (objectOutputStream != null) {
@@ -67,9 +86,9 @@ public class QicqClient implements Runnable {
 
     public void sendData(Object o) {
         try {
-            objectOutputStream.writeObject(o);
-        } catch (IOException e) {
-            logger.error(e);
+            sendingQueue.put(o);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
