@@ -13,7 +13,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
 /**
  * Created by Jeremie on 2015/5/13.
@@ -28,7 +27,7 @@ public class QicqClient implements Runnable {
     public QicqClient(DataHandler dataHandler) {
         this.dataHandler = dataHandler;
     }
-    private BlockingQueue<Object> sendingQueue = new ArrayBlockingQueue(50);
+    private ArrayBlockingQueue sendingQueue = new ArrayBlockingQueue(50);
 
     @Override
     public void run() {
