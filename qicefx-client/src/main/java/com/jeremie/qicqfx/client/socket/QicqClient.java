@@ -44,7 +44,7 @@ public class QicqClient implements Runnable {
                             break;
                         objectOutputStream.writeObject(o);
                     } catch (InterruptedException | IOException e) {
-                        e.printStackTrace();
+                        logger.error(e);
                     }
                 }
             });
@@ -89,7 +89,7 @@ public class QicqClient implements Runnable {
         try {
             sendingQueue.put(o);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
     }
 

@@ -52,7 +52,7 @@ public class QicqSokcet implements Runnable {
                         objectOutputStream.writeObject(o);
                     }
                 } catch (InterruptedException | IOException e) {
-                    e.printStackTrace();
+                    logger.error(e);
                 }
             });
             sendingThread.start();
@@ -65,10 +65,8 @@ public class QicqSokcet implements Runnable {
             }
             objectOutputStream.writeObject(null);
             Thread.sleep(200);
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException | InterruptedException e) {
             logger.error(e);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } finally {
             if (objectOutputStream != null) {
                 try {

@@ -149,13 +149,13 @@ public class MainController implements Initializable {
                     if (channel != null)
                         channel.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    logger.error(e);
                 }
                 try {
                     if (fs != null)
                         fs.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    logger.error(e);
                 }
             }
             if (byteBuffer != null) {

@@ -61,7 +61,7 @@ public class LoginController implements Initializable {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e);
             }
             QicqClient qicqClient = Constants.qicqClient;
             qicqClient.sendData(new ConnectDTO(username.getText().trim()));
@@ -105,13 +105,13 @@ public class LoginController implements Initializable {
                 disconnectDTO.setUsername(Constants.username);
                 disconnectDTO.setReason("断开连接");
                 Constants.qicqClient.sendData(disconnectDTO);
-                while (Constants.qicqThread.isAlive()) {
+               /* while (Constants.qicqThread.isAlive()) {
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
                         logger.error(e);
                     }
-                }
+                }*/
                 Constants.qicqClient = null;
                 Constants.qicqThread = null;
                 Platform.runLater(() -> {
