@@ -12,8 +12,4 @@
     <context:component-scan base-package="com.jeremie.qicqfx.client.controller" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-    <!-- service扫描 -->
-    <context:component-scan base-package="com.jeremie.qicqfx.client.service.impl" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-    </context:component-scan>
 </beans>
