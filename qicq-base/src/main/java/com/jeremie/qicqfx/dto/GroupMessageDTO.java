@@ -1,20 +1,17 @@
 package com.jeremie.qicqfx.dto;
 
-import java.nio.ByteBuffer;
-
 /**
- * Created by Jeremie on 2015/5/14.
+ * Created by jeremie on 2015/6/4.
  */
-public class PrivateMessageDTO extends MessageDTO{
+public class GroupMessageDTO extends MessageDTO {
     private String sender;
-    private String receiver;
     private String message;
     private Long createTime;
     private boolean isImage;
     private byte[] image;
 
-    public PrivateMessageDTO(){
-        status = Status.PRIVATE_MESSAGE;
+    public GroupMessageDTO() {
+        status = Status.GROUP_MESSAGE;
     }
 
     public boolean isImage() {
@@ -39,14 +36,6 @@ public class PrivateMessageDTO extends MessageDTO{
 
     public void setSender(String sender) {
         this.sender = sender;
-    }
-
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
     }
 
     public String getMessage() {
