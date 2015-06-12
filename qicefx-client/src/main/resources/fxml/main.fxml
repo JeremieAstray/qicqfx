@@ -69,7 +69,7 @@
                                 <Button onAction="#sendMsg" layoutX="452.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0"
                                         prefWidth="90.0" text="发送消息"/>
                                 <Label layoutX="12.0" layoutY="3.0" prefHeight="30.0" prefWidth="264.0"
-                                       text="按Ctril+Enter键发送消息"/>
+                                       text="按Ctrl+Enter键发送消息"/>
                                 <Button onAction="#sendPic" layoutX="354.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0"
                                         prefWidth="90.0" text="发送图片"/>
                             </children>

@@ -39,9 +39,5 @@ public class QicqServer {
                 logger.error(e);
             }
         }
-
     }
-
-
-
 }
