@@ -15,7 +15,7 @@ public class Config {
     private static Properties properties;
     private static double WIDTH = 600.0;
     private static double HEIGHT = 400.0;
-    public static String serverIp = "192.168.1.179";
+    public static String serverIp = "127.0.0.1";
 
     private static Properties getProperties() {
         if (properties == null) {
